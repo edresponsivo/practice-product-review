@@ -1,7 +1,7 @@
 import Product from "./Product";
 
-const Products = ({ products }) => {
-  console.log(products);
+const Products = ({ products, removeProduct }) => {
+  // console.log(products);
   return (
     <section>
       <div className="title">
@@ -10,7 +10,13 @@ const Products = ({ products }) => {
       <div className="products">
         {products.map((product) => {
           // console.log(product);
-          return <Product key={product.id} {...product} />;
+          return (
+            <Product
+              key={product.id}
+              {...product}
+              removeProduct={removeProduct}
+            />
+          );
         })}
       </div>
     </section>

@@ -251,3 +251,8 @@ main {
 .prod-footer {
   margin: 1rem 0;
 }
+
+.gallery img {
+  width: 100px;
+  height: 100px;
+}

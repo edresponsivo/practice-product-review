@@ -24,8 +24,11 @@ const App = () => {
     }
   };
 
+  const removeProduct = (prodId) => {
+    setProducts(products.filter((product) => product.id !== prodId));
+  };
+
   useEffect(() => {
-    console.log("using UseEffect only on first render...");
     fetchProducts();
   }, []);
 
@@ -37,10 +40,28 @@ const App = () => {
     );
   }
 
-  return (
-    <main>
-      <Products products={products} />
-    </main>
-  );
+  {
+    if (products.length === 0) {
+      return (
+        <main>
+          <section>
+            <div className="title">
+              <h2>List of Products To Review is Empty</h2>
+            </div>
+            <button className="btn" onClick={() => fetchProducts()}>
+              Load the list of Products
+            </button>
+            <div></div>
+          </section>
+        </main>
+      );
+    } else {
+      return (
+        <main>
+          <Products products={products} removeProduct={removeProduct} />
+        </main>
+      );
+    }
+  }
 };
 export default App;

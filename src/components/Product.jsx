@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Product = ({
   id,
   title,
@@ -7,7 +9,17 @@ const Product = ({
   brand,
   category,
   thumbnail,
+  removeProduct,
+  images,
 }) => {
+  const [showImgId, setShowImgId] = useState(1);
+  // console.log(images);
+
+  const handleShowImage = (prdId) => {
+    console.log(`will show the image of product id: ${prdId}`);
+    setShowImgId(prdId)
+  }
+
   return (
     <article className="single-product">
       <div className="prod-header">
@@ -24,8 +36,19 @@ const Product = ({
           <li>{category}</li>
         </ul>
       </div>
+      {showImgId === id && (
+        <div className="gallery">
+          {images.map((image) => (
+            <img src={image} className="gallery-img" />
+          ))}
+          <button onClick={() => setShowImgId(null)}>X</button>
+        </div>
+      )}
       <div className="prod-footer">
-        <button className="delete-btn">Remove Product</button>
+        <button className="btn" onClick={() => handleShowImage(id)}>See images</button>
+        <button className="delete-btn" onClick={() => removeProduct(id)}>
+          Remove Product
+        </button>
       </div>
     </article>
   );
