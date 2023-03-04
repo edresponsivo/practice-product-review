@@ -12,13 +12,13 @@ const Product = ({
   removeProduct,
   images,
 }) => {
-  const [showImgId, setShowImgId] = useState(1);
+  const [showImgId, setShowImgId] = useState(null);
   // console.log(images);
 
   const handleShowImage = (prdId) => {
     console.log(`will show the image of product id: ${prdId}`);
-    setShowImgId(prdId)
-  }
+    setShowImgId(prdId);
+  };
 
   return (
     <article className="single-product">
@@ -45,7 +45,9 @@ const Product = ({
         </div>
       )}
       <div className="prod-footer">
-        <button className="btn" onClick={() => handleShowImage(id)}>See images</button>
+        <button className="btn" onClick={() => handleShowImage(id)}>
+          See images
+        </button>
         <button className="delete-btn" onClick={() => removeProduct(id)}>
           Remove Product
         </button>
